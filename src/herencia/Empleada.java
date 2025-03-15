@@ -9,23 +9,43 @@ public abstract class Empleada {
     private String apellidos;
     private int edad;
     private double sueldo;
-    private String turno;
-    private String estado;
+    private Turnos turno;
+    private Estados estado;
     protected Puesto puesto;
 
-    private enum Estados {
+    // CONSTANTES
+    // EDAD
+    private static final int MIN_EDAD = 18;
+    private static final int MAX_EDAD = 65;
+
+    // DINERO
+    private static final double MIN_SALARIO = 250.24;
+
+    // ESTADO
+    static public enum Estados {
         ACTIVO, VACACIONES, BAJA, INACTIVO
     }
 
-    public Empleada(String dni, String nombre, String apellidos, int edad, double sueldo, String turno, String estado, Puesto puesto) {
+    // TURNO
+    static public enum Turnos {
+        MANIANA, TARDE, PARTIDO, ROTATIVO
+    }
+
+    public Empleada(String dni, String nombre, String apellidos, int edad, double sueldo, Turnos turno,
+            Estados estado, Puesto puesto) {
         this.dni = dni;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.edad = verificarEdad(edad);
-        this.sueldo = sueldo;
+        this.nombre = validarNombreApellido(nombre);
+        this.apellidos = validarNombreApellido(apellidos);
+        this.edad = validarEdad(edad);
+        this.sueldo = validarSueldo(sueldo);
         this.turno = turno;
         this.estado = estado;
         this.puesto = puesto;
+    }
+
+// Separar la cadena cada vez que encuentre un espacio, y ahi que recorrer la cadena en un bucle. y poner la primera en mayuscula y luego unir la cadena.
+    private String arreglarCadena() {
+        return "";
     }
 
     // GETTERS
@@ -49,11 +69,11 @@ public abstract class Empleada {
         return sueldo;
     }
 
-    public String getTurno() {
+    public Turnos getTurno() {
         return turno;
     }
 
-    public String getEstado() {
+    public Estados getEstado() {
         return estado;
     }
 
@@ -67,40 +87,47 @@ public abstract class Empleada {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = validarNombreApellido(nombre);
     }
 
     public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+        this.apellidos = validarNombreApellido(apellidos);
     }
 
     public void setEdad(int edad) {
-        this.edad = verificarEdad(edad);
+        this.edad = validarEdad(edad);
     }
 
     public void setSueldo(double sueldo) {
-        this.sueldo = sueldo;
+        this.sueldo = validarSueldo(sueldo);
     }
 
-    public void setTurno(String turno) {
+    public void setTurno(Turnos turno) {
         this.turno = turno;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estados estado) {
         this.estado = estado;
     }
 
     // Metodos de validación
-    private int verificarEdad(int edad) {
+    private String validarNombreApellido(String cadena) {
+        return (!cadena.isEmpty()) ? cadena.trim() : "RELLENAR";
+    }
+
+    private int validarEdad(int edad) {
         if (edad < 18) {
-            this.edad = 18;
+            this.edad = Empleada.MIN_EDAD;
         } else if (edad > 67) {
-            this.edad = 67;
+            this.edad = Empleada.MAX_EDAD;
         } else {
             this.edad = edad;
         }
-
         return this.edad;
+    }
+
+    private double validarSueldo(double sueldo) {
+        return (sueldo <= 0) ? Empleada.MIN_SALARIO : sueldo;
     }
 
 }

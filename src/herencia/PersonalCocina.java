@@ -8,7 +8,16 @@ public class PersonalCocina extends Empleada {
     private String partida;
     private int numeroCuchillos;
 
-    public PersonalCocina(String partida, int numeroCuchillos, String dni, String nombre, String apellidos, int edad, double sueldo, String turno, String estado, Puesto puesto) {
+    public PersonalCocina(
+            String partida, 
+            int numeroCuchillos, String dni,
+            String nombre, 
+            String apellidos, 
+            int edad, 
+            double sueldo, 
+            Turnos turno, 
+            Estados estado, 
+            Puesto puesto) {
         super(dni, nombre, apellidos, edad, sueldo, turno, estado, puesto);
         this.partida = partida;
         this.numeroCuchillos = numeroCuchillos;

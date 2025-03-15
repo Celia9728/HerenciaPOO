@@ -12,13 +12,13 @@ public class Herencia {
         PersonalCocina empleada1 = new PersonalCocina(
                 "frio",
                 8,
-                "12345678F",
+                "12345678N",
                 "Celia",
-                "Molina",
+                "Molina Leal",
                 27,
                 99999.99,
-                "Mañana",
-                "Activo",
+                Empleada.Turnos.MANIANA,
+                Empleada.Estados.ACTIVO,
                 JefaPartida
         );
 
