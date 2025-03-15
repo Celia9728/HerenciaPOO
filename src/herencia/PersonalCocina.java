@@ -1,14 +1,15 @@
+package herencia;
 
-package herenciapoo;
+import herencia.puestos.Puesto;
 
-public class Cocinera extends Empleada {
+public class PersonalCocina extends Empleada {
 
     // Propiedades
     private String partida;
     private int numeroCuchillos;
 
-    public Cocinera(String partida, int numeroCuchillos, String dni, String nombre, String apellidos, int edad, double sueldo, String turno, String puesto) {
-        super(dni, nombre, apellidos, edad, sueldo, turno, puesto);
+    public PersonalCocina(String partida, int numeroCuchillos, String dni, String nombre, String apellidos, int edad, double sueldo, String turno, String estado, Puesto puesto) {
+        super(dni, nombre, apellidos, edad, sueldo, turno, estado, puesto);
         this.partida = partida;
         this.numeroCuchillos = numeroCuchillos;
     }
@@ -31,5 +32,9 @@ public class Cocinera extends Empleada {
         this.numeroCuchillos = numeroCuchillos;
     }
 
-}
+    @Override
+    public String toString() {
+        return "PersonalCocina{" + "partida=" + partida + ", numeroCuchillos=" + numeroCuchillos + '}';
+    }
 
+}

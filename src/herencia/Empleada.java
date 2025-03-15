@@ -1,6 +1,8 @@
-package herenciapoo;
+package herencia;
 
-public class Empleada {
+import herencia.puestos.Puesto;
+
+public abstract class Empleada {
 
     private String dni;
     private String nombre;
@@ -8,15 +10,21 @@ public class Empleada {
     private int edad;
     private double sueldo;
     private String turno;
-    private String puesto;
+    private String estado;
+    protected Puesto puesto;
 
-    public Empleada(String dni, String nombre, String apellidos, int edad, double sueldo, String turno, String puesto) {
+    private enum Estados {
+        ACTIVO, VACACIONES, BAJA, INACTIVO
+    }
+
+    public Empleada(String dni, String nombre, String apellidos, int edad, double sueldo, String turno, String estado, Puesto puesto) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.edad = edad;
+        this.edad = verificarEdad(edad);
         this.sueldo = sueldo;
         this.turno = turno;
+        this.estado = estado;
         this.puesto = puesto;
     }
 
@@ -45,7 +53,11 @@ public class Empleada {
         return turno;
     }
 
-    public String getPuesto() {
+    public String getEstado() {
+        return estado;
+    }
+
+    public Puesto getPuesto() {
         return puesto;
     }
 
@@ -63,7 +75,7 @@ public class Empleada {
     }
 
     public void setEdad(int edad) {
-        this.edad = edad;
+        this.edad = verificarEdad(edad);
     }
 
     public void setSueldo(double sueldo) {
@@ -74,8 +86,21 @@ public class Empleada {
         this.turno = turno;
     }
 
-    public void setPuesto(String puesto) {
-        this.puesto = puesto;
-    }    
-    
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    // Metodos de validación
+    private int verificarEdad(int edad) {
+        if (edad < 18) {
+            this.edad = 18;
+        } else if (edad > 67) {
+            this.edad = 67;
+        } else {
+            this.edad = edad;
+        }
+
+        return this.edad;
+    }
+
 }
