@@ -1,7 +1,7 @@
 package herencia;
 
-import herencia.puestos.Puesto;
-import herencia.puestos.JefaPartida;
+import polimorfismo.puestos.Puesto;
+import polimorfismo.puestos.JefaPartida;
 
 public class Herencia {
 
@@ -10,11 +10,11 @@ public class Herencia {
         Puesto JefaPartida = new JefaPartida();
 
         PersonalCocina empleada1 = new PersonalCocina(
-                "frio",
+                PersonalCocina.Partidas.FRIO,
                 8,
-                "12345678N",
+                "12345678C",
                 "Celia",
-                "Molina Leal",
+                "molina leal",
                 27,
                 99999.99,
                 Empleada.Turnos.MANIANA,
@@ -24,5 +24,6 @@ public class Herencia {
 
         // Tenemos que acceder primero a la clase puesto y luego ya al metodo cocinar.
         empleada1.getPuesto().cocinar();
+
     }
 }

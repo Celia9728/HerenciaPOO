@@ -1,4 +1,4 @@
-package herencia.puestos;
+package polimorfismo.puestos;
 
 public class JefaPartida extends Puesto {
 

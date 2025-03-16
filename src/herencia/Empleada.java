@@ -1,6 +1,6 @@
 package herencia;
 
-import herencia.puestos.Puesto;
+import polimorfismo.puestos.Puesto;
 
 public abstract class Empleada {
 
@@ -16,7 +16,7 @@ public abstract class Empleada {
     // CONSTANTES
     // EDAD
     private static final int MIN_EDAD = 18;
-    private static final int MAX_EDAD = 65;
+    private static final int MAX_EDAD = 67;
 
     // DINERO
     private static final double MIN_SALARIO = 250.24;
@@ -33,19 +33,14 @@ public abstract class Empleada {
 
     public Empleada(String dni, String nombre, String apellidos, int edad, double sueldo, Turnos turno,
             Estados estado, Puesto puesto) {
-        this.dni = dni;
-        this.nombre = validarNombreApellido(nombre);
-        this.apellidos = validarNombreApellido(apellidos);
+        this.dni = dni; // INVESTIGAR REGEX
+        this.nombre = arreglarCadena(validarNombreApellido(nombre)); // INVESTIGAR PIPE
+        this.apellidos = arreglarCadena(validarNombreApellido(apellidos));
         this.edad = validarEdad(edad);
         this.sueldo = validarSueldo(sueldo);
         this.turno = turno;
         this.estado = estado;
         this.puesto = puesto;
-    }
-
-// Separar la cadena cada vez que encuentre un espacio, y ahi que recorrer la cadena en un bucle. y poner la primera en mayuscula y luego unir la cadena.
-    private String arreglarCadena() {
-        return "";
     }
 
     // GETTERS
@@ -87,11 +82,11 @@ public abstract class Empleada {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = validarNombreApellido(nombre);
+        this.nombre = arreglarCadena(validarNombreApellido(nombre));
     }
 
     public void setApellidos(String apellidos) {
-        this.apellidos = validarNombreApellido(apellidos);
+        this.apellidos = arreglarCadena(validarNombreApellido(apellidos));
     }
 
     public void setEdad(int edad) {
@@ -116,18 +111,29 @@ public abstract class Empleada {
     }
 
     private int validarEdad(int edad) {
-        if (edad < 18) {
-            this.edad = Empleada.MIN_EDAD;
-        } else if (edad > 67) {
-            this.edad = Empleada.MAX_EDAD;
-        } else {
-            this.edad = edad;
+        if (edad < Empleada.MIN_EDAD) {
+            edad = Empleada.MIN_EDAD;
+        } else if (edad > Empleada.MAX_EDAD) {
+            edad = Empleada.MAX_EDAD;
         }
-        return this.edad;
+        return edad;
     }
 
     private double validarSueldo(double sueldo) {
         return (sueldo <= 0) ? Empleada.MIN_SALARIO : sueldo;
+    }
+
+    // ARREGLOS
+    private String arreglarCadena(String cadena) {
+        String[] partes = cadena.split(" ");
+        String resultado = "";
+
+        for (String parte : partes) {
+            parte = parte.substring(0, 1).toUpperCase() + parte.substring(1).toLowerCase();
+            resultado = resultado + parte + " ";
+        }
+
+        return resultado;
     }
 
 }

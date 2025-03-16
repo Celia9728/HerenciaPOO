@@ -1,7 +1,7 @@
 package herencia;
 
 
-import herencia.puestos.Puesto;
+import polimorfismo.puestos.Puesto;
 
 public class Camarera extends Empleada {
 

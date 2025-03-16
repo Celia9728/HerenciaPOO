@@ -1,30 +1,39 @@
 package herencia;
 
-import herencia.puestos.Puesto;
+import polimorfismo.puestos.Puesto;
 
 public class PersonalCocina extends Empleada {
 
     // Propiedades
-    private String partida;
+    private Partidas partida;
     private int numeroCuchillos;
 
+    // DEFINIR PARTIDAS
+    static public enum Partidas {
+        FRIO, PESCADOS, CARNES, ARROCES, FREIDORA, PASTELERIA
+    }
+
     public PersonalCocina(
-            String partida, 
+            Partidas partida,
             int numeroCuchillos, String dni,
-            String nombre, 
-            String apellidos, 
-            int edad, 
-            double sueldo, 
-            Turnos turno, 
-            Estados estado, 
+            String nombre,
+            String apellidos,
+            int edad,
+            double sueldo,
+            Turnos turno,
+            Estados estado,
             Puesto puesto) {
         super(dni, nombre, apellidos, edad, sueldo, turno, estado, puesto);
         this.partida = partida;
-        this.numeroCuchillos = numeroCuchillos;
+        this.numeroCuchillos = validarNumeroCuchillos(numeroCuchillos);
+    }
+
+    private int validarNumeroCuchillos(int numeroCuchillos) {
+        return (numeroCuchillos <= 0) ? 3 : numeroCuchillos;
     }
 
     // GETTERS
-    public String getPartida() {
+    public Partidas getPartida() {
         return partida;
     }
 
@@ -33,7 +42,7 @@ public class PersonalCocina extends Empleada {
     }
 
     // SETTERS
-    public void setPartida(String partida) {
+    public void setPartida(Partidas partida) {
         this.partida = partida;
     }
 
