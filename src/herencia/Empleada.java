@@ -45,35 +45,35 @@ public abstract class Empleada {
 
     // GETTERS
     public String getDni() {
-        return dni;
+        return this.dni;
     }
 
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public String getApellidos() {
-        return apellidos;
+        return this.apellidos;
     }
 
     public int getEdad() {
-        return edad;
+        return this.edad;
     }
 
     public double getSueldo() {
-        return sueldo;
+        return this.sueldo;
     }
 
     public Turnos getTurno() {
-        return turno;
+        return this.turno;
     }
 
     public Estados getEstado() {
-        return estado;
+        return this.estado;
     }
 
     public Puesto getPuesto() {
-        return puesto;
+        return this.puesto;
     }
 
     // SETTERS

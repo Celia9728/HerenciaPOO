@@ -28,17 +28,13 @@ public class PersonalCocina extends Empleada {
         this.numeroCuchillos = validarNumeroCuchillos(numeroCuchillos);
     }
 
-    private int validarNumeroCuchillos(int numeroCuchillos) {
-        return (numeroCuchillos <= 0) ? 3 : numeroCuchillos;
-    }
-
     // GETTERS
     public Partidas getPartida() {
-        return partida;
+        return this.partida;
     }
 
     public int getNumeroCuchillos() {
-        return numeroCuchillos;
+        return this.numeroCuchillos;
     }
 
     // SETTERS
@@ -47,12 +43,16 @@ public class PersonalCocina extends Empleada {
     }
 
     public void setNumeroCuchillos(int numeroCuchillos) {
-        this.numeroCuchillos = numeroCuchillos;
+        this.numeroCuchillos = validarNumeroCuchillos(numeroCuchillos);
     }
 
     @Override
     public String toString() {
-        return "PersonalCocina{" + "partida=" + partida + ", numeroCuchillos=" + numeroCuchillos + '}';
+        return "PersonalCocina{" + "partida=" + this.partida + ", numeroCuchillos=" + this.numeroCuchillos + '}';
     }
 
+    // VALIDAR
+    private int validarNumeroCuchillos(int numeroCuchillos) {
+        return (numeroCuchillos <= 0) ? 3 : numeroCuchillos;
+    }
 }
