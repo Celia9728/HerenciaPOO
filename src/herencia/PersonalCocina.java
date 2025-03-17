@@ -8,6 +8,10 @@ public class PersonalCocina extends Empleada {
     private Partidas partida;
     private int numeroCuchillos;
 
+    // CONSTANTES
+    // MINIMO CUCHILLOS
+    private static final int MIN_CUCHILLOS = 3;
+
     // DEFINIR PARTIDAS
     static public enum Partidas {
         FRIO, PESCADOS, CARNES, ARROCES, FREIDORA, PASTELERIA
@@ -51,8 +55,8 @@ public class PersonalCocina extends Empleada {
         return "PersonalCocina{" + "partida=" + this.partida + ", numeroCuchillos=" + this.numeroCuchillos + '}';
     }
 
-    // VALIDAR
+    // VALIDACIONES
     private int validarNumeroCuchillos(int numeroCuchillos) {
-        return (numeroCuchillos <= 0) ? 3 : numeroCuchillos;
+        return (numeroCuchillos <= 0) ? this.MIN_CUCHILLOS : numeroCuchillos;
     }
 }

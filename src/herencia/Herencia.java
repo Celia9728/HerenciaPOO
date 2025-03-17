@@ -24,6 +24,7 @@ public class Herencia {
 
         // Tenemos que acceder primero a la clase puesto y luego ya al metodo cocinar.
         empleada1.getPuesto().cocinar();
+        empleada1.getPuesto().responsabilidad();
 
     }
 }
