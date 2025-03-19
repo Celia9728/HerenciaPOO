@@ -2,7 +2,7 @@ package polimorfismo.puestos;
 
 public class AyudanteCocina extends Puesto {
 
-    public AyudanteCocina(String nombre) {
+    public AyudanteCocina() {
         super("Ayudante de cocina");
     }
 
